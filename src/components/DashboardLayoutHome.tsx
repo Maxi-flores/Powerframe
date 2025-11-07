@@ -16,8 +16,7 @@ interface SlotConfig {
 
 const WIDGET_SLOTS: SlotConfig[] = Array.from({ length: ROWS * COLS }, (_, i) => ({
   id: `slot${i + 1}`,
-}));
-
+})
 const WIDGET_PALETTE: WidgetType[] = [
   "kanban",
   "chart",
@@ -35,34 +34,22 @@ interface DashboardLayoutHomeProps {
 }
 
 export default function DashboardLayoutHome({ className }: DashboardLayoutHomeProps) {
-  const { layout, addWidget, moveWidget, removeWidget } = useLayoutStore();
-  const [hoveredSlot, setHoveredSlot] = useState<string | null>(null);
-  const [showPalette, setShowPalette] = useState(false);
-  const dropRef = useRef<HTMLDivElement>(null);
-
+  const { layout, addWidget, moveWidget, removeWidget } = useLayoutStore(  const [hoveredSlot, setHoveredSlot] = useState<string | null>(null  const [showPalette, setShowPalette] = useState(false  const dropRef = useRef<HTMLDivElement>(null
   const [, drop] = useDrop(() => ({
     accept: "WIDGET",
     drop: (item: { type: WidgetType; id?: string; gridSize?: { w: number; h: number } }, monitor) => {
-      const offset = monitor.getClientOffset();
-      if (!offset || !dropRef.current) return;
+      const offset = monitor.getClientOffset(      if (!offset || !dropRef.current) return;
 
-      const dropTarget = document.elementFromPoint(offset.x, offset.y);
-      const slotElement = dropTarget?.closest("[data-slot-id]");
-      const slotId = slotElement?.getAttribute("data-slot-id");
-
+      const dropTarget = document.elementFromPoint(offset.x, offset.y      const slotElement = dropTarget?.closest("[data-slot-id]"      const slotId = slotElement?.getAttribute("data-slot-id"
       if (slotId) {
         const size = item.gridSize || { w: 1, h: 1 };
         if (item.id) {
-          moveWidget(item.id, slotId, size);
-        } else {
-          addWidget(item.type, slotId, size);
-        }
+          moveWidget(item.id, slotId, size        } else {
+          addWidget(item.type, slotId, size        }
       }
     },
-  }));
-
-  drop(dropRef);
-
+  })
+  drop(dropRef
   return (
     <div
       ref={dropRef}
@@ -74,7 +61,7 @@ export default function DashboardLayoutHome({ className }: DashboardLayoutHomePr
       <div className="dashboard-bg" />
 
       {/* 3×4 FIXED GRID WITH MERGE SUPPORT */}
-      <div35 className="dashboard-grid" style={{position: "relative"}}>
+      <div className="dashboard-grid" style={{position: "relative"}}>
         {WIDGET_SLOTS.map((slot) => (
           <WidgetSlot
             key={slot.id}
@@ -126,5 +113,4 @@ export default function DashboardLayoutHome({ className }: DashboardLayoutHomePr
         )}
       </div>
     </div>
-  );
-}
+  }

@@ -8,7 +8,7 @@ interface LayoutState {
   removeWidget: (slotId: string) => void;
 }
 
-export const useLayoutStore = create<LayoutState>(((set)) => ({
+export const useLayoutStore = create<LayoutState>((set) => ({
   layout: {},
 
   addWidget: (type, slotId, size = { w: 1, h: 1 }) => set((state) => {
