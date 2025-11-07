@@ -6,7 +6,6 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { PlasmicRootProvider } from "@plasmicapp/loader-react";
 import { PLASMIC } from "@/plasmic-init";
 import PlasmicHost from "./plasmic-host";
-import DashboardPage from "./pages/DashboardPage";
 import "./index.css";
 
 // Preload Michroma for instant sidebar render
@@ -36,8 +35,8 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/plasmic-host" element={<PlasmicHost />} />
 
             {/* Main App */}
-            <Route path="/" element={<DashboardPage />} />
-            <Route path="*" element={<DashboardPage />} />
+            <Route path="/" element={<DashboardLayoutHome />} />
+            <Route path="*" element={<DashboardLayoutHome />} />
           </Routes>
         </BrowserRouter>
       </DndProvider>

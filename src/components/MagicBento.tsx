@@ -282,7 +282,7 @@ const GlobalSpotlight: React.FC<{
       const cards = gridRef.current.querySelectorAll('.magic-bento-card');
       if (!mouseInside) {
         gsap.to(spotlightRef.current, { opacity: 0, duration: 0.3, ease: 'power2.out' });
-        cards.forEach(card => cards.forEach(card => (card as HTMLElement).style.setProperty('--glow-intensity', '0'));
+        cards.forEach(card => (card as HTMLElement).style.setProperty('--glow-intensity', '0'));
         return;
       }
 
