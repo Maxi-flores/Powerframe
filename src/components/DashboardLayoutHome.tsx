@@ -1,5 +1,4 @@
 // src/components/DashboardLayoutHome.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
 import { useDrop } from "react-dnd";
 import WidgetSlot from "./WidgetSlot";
 import DraggableWidget from "./DraggableWidget";

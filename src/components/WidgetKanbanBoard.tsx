@@ -1,6 +1,4 @@
 // src/components/WidgetKanbanBoard.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 type Task = { id: number; title: string; status: "todo" | "inprogress" | "done" };
 type WidgetKanbanBoardProps = {
   className?: string;

@@ -1,5 +1,4 @@
 // src/components/WidgetMeetingsActivities.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
 import { Plane, Calendar, User } from "lucide-react"; // Ensure installed: npm i lucide-react
 
 type Activity = { id: number; title: string; desc: string; icon: "plane" | "calendar" | "user"; date: string };

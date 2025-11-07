@@ -1,6 +1,4 @@
 // src/components/WidgetTaskStatus.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 export default function WidgetTaskStatus() {
   const data = [
     { label: "In Progress", value: 30, color: "#0EA5E9" },

@@ -1,6 +1,4 @@
 // src/components/DashboardLayoutStartups.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 type DashboardLayoutStartupsProps = {
   className?: string;
   style?: React.CSSProperties;

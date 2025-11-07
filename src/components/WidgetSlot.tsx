@@ -1,4 +1,3 @@
-import React, { forwardRef } from "react";
 import { useDrop } from "react-dnd";
 import WidgetRenderer from "./widgets/WidgetRenderer";
 import { Widget } from "../types";
@@ -39,7 +38,7 @@ const WidgetSlot = forwardRef<HTMLDivElement, WidgetSlotProps>(({
       onMouseEnter={() => onHover(id)}
       onMouseLeave={() => onHover(null)}
     >
-      {widget && <WidgetRenderer widget={widget} />}
+      {widget && <WidgetRenderer type={widget.type} />}
       {widget && (
         <button onClick={onRemove} className="remove-btn">×</button>
       )}

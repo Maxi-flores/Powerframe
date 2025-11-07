@@ -1,5 +1,4 @@
 // src/components/WidgetCalendar.tsx  (COLLAPSIBLE + 6 WEEKS + HORIZONTAL EXPAND)
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
 import "./WidgetCalendar.css";
 
 interface WidgetCalendarProps {

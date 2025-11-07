@@ -1,6 +1,4 @@
 // src/components/DashboardLayoutPlanning.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 type DashboardLayoutPlanningProps = {
   className?: string;
   style?: React.CSSProperties;

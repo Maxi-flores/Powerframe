@@ -1,5 +1,4 @@
 // src/pages/Login.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
 import { PlasmicRootProvider } from "@plasmicapp/loader-react";
 import { PLASMIC } from "@/plasmic-init";
 import LoginBackground from "@/components/LoginBackground";

@@ -1,5 +1,4 @@
 // src/components/WidgetNotifications.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
 import { Bell } from "lucide-react";
 
 type Notification = { id: number; message: string; seen: boolean; date: string };

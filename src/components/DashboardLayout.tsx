@@ -1,5 +1,4 @@
 // src/components/DashboardLayout.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
 import MagicBento from "./MagicBento";
 
 interface DashboardLayoutProps {

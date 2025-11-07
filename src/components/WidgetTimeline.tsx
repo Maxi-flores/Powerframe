@@ -1,6 +1,4 @@
 // src/components/WidgetTimeline.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 export default function WidgetTimeline() {
   const tasks = [
     { title: "Design Homepage", date: "Today", color: "#0EA5E9" },

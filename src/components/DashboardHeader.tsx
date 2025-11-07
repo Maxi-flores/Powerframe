@@ -1,5 +1,4 @@
 // src/components/DashboardHeader.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
 import NotificationBell from "./NotificationBell";
 import NewItemButton from "./NewItemButton";
 

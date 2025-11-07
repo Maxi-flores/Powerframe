@@ -1,6 +1,4 @@
 // src/components/LoginBackground.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 type LoginBackgroundProps = {
   className?: string;   // ← NEW: allow Plasmic to add classes
   style?: React.CSSProperties; // ← NEW: allow inline styles

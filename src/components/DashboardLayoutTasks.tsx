@@ -1,6 +1,4 @@
 // src/components/DashboardLayoutTasks.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 type Props = {
   widget31?: React.ReactNode;
   widget32?: React.ReactNode;

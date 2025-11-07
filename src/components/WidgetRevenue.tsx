@@ -1,6 +1,4 @@
 // src/components/WidgetRevenue.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 export default function WidgetRevenue() {
   return (
     <div

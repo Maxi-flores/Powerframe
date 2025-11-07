@@ -1,5 +1,4 @@
 // src/components/widgets/WidgetRenderer.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay } from "date-fns";
 import "./WidgetRenderer.css";
 

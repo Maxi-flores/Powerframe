@@ -1,6 +1,4 @@
 // src/components/Header.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 type HeaderProps = {
   pageName?: React.ReactNode; // ← SLOT for page title
   className?: string;
@@ -325,7 +323,7 @@ function MenuItem({
 // ──────────────────────────────────────
 // SVG Icons (unchanged)
 function Icon({ name, ...props }: { name: string; [k: string]: any }) {
-  const icons: Record<string, JSX.Element> = {
+  const icons: Record<string, React.ReactNode> = {
     x: (
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

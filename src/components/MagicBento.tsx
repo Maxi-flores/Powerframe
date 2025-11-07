@@ -1,5 +1,4 @@
 // src/components/MagicBento.tsx
-import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { gsap } from 'gsap';
 import './MagicBento.css';
 
@@ -39,10 +38,10 @@ const updateCardGlowProperties = (card: HTMLElement, mouseX: number, mouseY: num
   const rect = card.getBoundingClientRect();
   const relativeX = ((mouseX - rect.left) / rect.width) * 100;
   const relativeY = ((mouseY - rect.top) / rect.height) * 100;
-  card.style.setProperty('--glow-x', `${relativeX}%`);
-  card.style.setProperty('--glow-y', `${relativeY}%`);
-  card.style.setProperty('--glow-intensity', glow.toString());
-  card.style.setProperty('--glow-radius', `${radius}px`);
+  cards.forEach(card => (card as HTMLElement).style.setProperty('--glow-x', `${relativeX}%`);
+  cards.forEach(card => (card as HTMLElement).style.setProperty('--glow-y', `${relativeY}%`);
+  cards.forEach(card => (card as HTMLElement).style.setProperty('--glow-intensity', glow.toString());
+  cards.forEach(card => (card as HTMLElement).style.setProperty('--glow-radius', `${radius}px`);
 };
 
 const ParticleCard: React.FC<{
@@ -92,7 +91,7 @@ const ParticleCard: React.FC<{
         opacity: 0,
         duration: 0.3,
         ease: 'back.in(1.7)',
-        onComplete: () => particle.parentNode?.removeChild(particle),
+        onComplete: () => { if (particle.parentNode) particle.parentNode.removeChild(particle); },
       });
     });
     particlesRef.current = [];
@@ -283,7 +282,7 @@ const GlobalSpotlight: React.FC<{
       const cards = gridRef.current.querySelectorAll('.magic-bento-card');
       if (!mouseInside) {
         gsap.to(spotlightRef.current, { opacity: 0, duration: 0.3, ease: 'power2.out' });
-        cards.forEach(card => card.style.setProperty('--glow-intensity', '0'));
+        cards.forEach(card => cards.forEach(card => (card as HTMLElement).style.setProperty('--glow-intensity', '0'));
         return;
       }
 

@@ -1,6 +1,4 @@
 // src/components/WidgetRecentLeads.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 type Lead = { id: number; name: string; company: string; stage: string; date: string; status: string };
 type WidgetRecentLeadsProps = {
   className?: string;

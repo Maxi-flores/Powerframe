@@ -1,5 +1,4 @@
 // src/layouts/AppLayout.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 

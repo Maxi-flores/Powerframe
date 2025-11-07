@@ -1,6 +1,4 @@
 // src/components/NewItemButton.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 type Props = {
   className?: string;
   style?: React.CSSProperties;

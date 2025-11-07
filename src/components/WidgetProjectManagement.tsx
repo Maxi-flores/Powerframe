@@ -1,6 +1,4 @@
 // src/components/WidgetProjectManagement.tsx
-import { useState, useRef, useEffect, forwardRef, createContext, useContext, StrictMode } from "react";
-
 type Project = { id: number; name: string; status: string; deadline: string; variants: string; sales: number };
 type WidgetProjectManagementProps = {
   className?: string;
@@ -43,7 +41,7 @@ export default function WidgetProjectManagement({
             <div key={i} style={{ flex: 1, background: "#3B82F6", height: `${(val / 500) * 100}%`, borderRadius: "0.25rem" }} />
           ))}
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "#9CA3AF", mt: "0.5rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "#9CA3AF", marginTop: "0.5rem" }}>
           {months.map(m => <span key={m}>{m}</span>)}
         </div>
       </div>
