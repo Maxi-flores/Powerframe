@@ -26,7 +26,7 @@ import MetricCard from "@/components/MetricCard";
 import BottomMetricCard from "@/components/BottomMetricCard";
 
 // ── ANIMATED HERO ─────────────────────────────────────────────────────
-
+import MagicBento from "@/components/MagicBento"; // ← FIXED: NOW IMPORTED
 
 // ── ORIGINAL DASHBOARD WIDGETS (8) ────────────────────────────────────
 import WidgetCalendar from "@/components/WidgetCalendar";
@@ -65,7 +65,7 @@ const registerLayout = (
 ) => {
   PLASMIC.registerComponent(Component, {
     name,
-    props: slots,
+    props: Object.fromEntries(Object.keys(slots).map((key) => [key, "slot"])),
   });
 };
 
@@ -83,7 +83,7 @@ registerLayout(DashboardLayout, "DashboardLayout", {
   loginEntry: "slot",
   bottomMetric1: "slot",
   bottomMetric2: "slot",
-  magicBento: "slot",
+ 'magicBento': 'slot',
   halfLeft: "slot",
   halfRight: "slot",
   fullWidth2: "slot",
@@ -155,17 +155,13 @@ registerLayout(DashboardLayoutTasks, "DashboardLayoutTasks", {
 PLASMIC.registerComponent(Sidebar, { name: "Sidebar", props: {} });
 PLASMIC.registerComponent(Header, {
   name: "Header",
-  props: {
-    pageName: "slot",
-  },
+  props: { pageName: "slot" },
 });
 
 // ── CORE UI COMPONENTS ────────────────────────────────────────────────
 PLASMIC.registerComponent(Counter, {
   name: "Counter",
-  props: {
-    initialValue: { type: "number", defaultValue: 0 },
-  },
+  props: { initialValue: { type: "number", defaultValue: 0 } },
 });
 
 PLASMIC.registerComponent(LoginForm, {
@@ -173,21 +169,11 @@ PLASMIC.registerComponent(LoginForm, {
   props: {
     buttonText: { type: "string", defaultValue: "Log in" },
     showSignup: { type: "boolean", defaultValue: true },
-    onLogin: {
-      type: "eventHandler",
-      argTypes: [
-        { name: "email", type: "string" },
-        { name: "password", type: "string" },
-      ],
-    },
+    onLogin: { type: "eventHandler", argTypes: [{ name: "email", type: "string" }, { name: "password", type: "string" }] },
   },
 });
 
-PLASMIC.registerComponent(LoginBackground, {
-  name: "LoginBackground",
-  props: { children: "slot" },
-});
-
+PLASMIC.registerComponent(LoginBackground, { name: "LoginBackground", props: { children: "slot" } });
 PLASMIC.registerComponent(MovingLoginBackground, {
   name: "MovingLoginBackground",
   props: {
@@ -205,11 +191,7 @@ PLASMIC.registerComponent(LoginEntryBox, { name: "LoginEntryBox", props: {} });
 PLASMIC.registerComponent(SocialLoginButton, {
   name: "SocialLoginButton",
   props: {
-    provider: {
-      type: "choice",
-      options: ["google", "apple"],
-      defaultValue: "google",
-    },
+    provider: { type: "choice", options: ["google", "apple"], defaultValue: "google" },
   },
 });
 
@@ -250,30 +232,20 @@ PLASMIC.registerComponent(MagicBento, {
 });
 
 // ── ORIGINAL WIDGETS (8) ──────────────────────────────────────────────
-[
-  WidgetCalendar,
-  WidgetRevenue,
-  WidgetAnalytics,
-  WidgetTaskStatus,
-  WidgetTimeline,
-  WidgetPendingTasks,
-  WidgetActiveProjects,
-  WidgetNewCustomers,
-].forEach((Component, i) => {
-  const names = [
-    "WidgetCalendar",
-    "WidgetRevenue",
-    "WidgetAnalytics",
-    "WidgetTaskStatus",
-    "WidgetTimeline",
-    "WidgetPendingTasks",
-    "WidgetActiveProjects",
-    "WidgetNewCustomers",
-  ];
-  registerWidget(Component, names[i]);
-});
+const originalWidgets = [
+  { Component: WidgetCalendar, name: "WidgetCalendar" },
+  { Component: WidgetRevenue, name: "WidgetRevenue" },
+  { Component: WidgetAnalytics, name: "WidgetAnalytics" },
+  { Component: WidgetTaskStatus, name: "WidgetTaskStatus" },
+  { Component: WidgetTimeline, name: "WidgetTimeline" },
+  { Component: WidgetPendingTasks, name: "WidgetPendingTasks" },
+  { Component: WidgetActiveProjects, name: "WidgetActiveProjects" },
+  { Component: WidgetNewCustomers, name: "WidgetNewCustomers" },
+];
 
-// ── NEW WIDGETS (6) – DATA-DRIVEN & INTERACTIVE ───────────────────────
+originalWidgets.forEach(({ Component, name }) => registerWidget(Component, name));
+
+// ── NEW INTERACTIVE WIDGETS (6) ───────────────────────────────────────
 PLASMIC.registerComponent(WidgetKanbanBoard, {
   name: "WidgetKanbanBoard",
   props: {
@@ -365,10 +337,7 @@ PLASMIC.registerComponent(WidgetTaskList, {
       },
       defaultValue: [],
     },
-    onCreateTask: {
-      type: "eventHandler",
-      argTypes: [],
-    },
+    onCreateTask: { type: "eventHandler", argTypes: [] },
   },
 });
 
@@ -387,9 +356,6 @@ PLASMIC.registerComponent(WidgetNotifications, {
       },
       defaultValue: [],
     },
-    onMarkAllRead: {
-      type: "eventHandler",
-      argTypes: [],
-    },
+    onMarkAllRead: { type: "eventHandler", argTypes: [] },
   },
 });

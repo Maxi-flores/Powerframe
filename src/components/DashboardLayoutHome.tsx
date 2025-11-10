@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, forwardRef, createContext, useContext } from "react";
 // src/components/DashboardLayoutHome.tsx
+import React, { useState, useRef } from "react";
 import { useDrop } from "react-dnd";
 import WidgetSlot from "./WidgetSlot";
 import DraggableWidget from "./DraggableWidget";
@@ -7,8 +7,8 @@ import { useLayoutStore } from "../store/layoutStore";
 import { WidgetType } from "../types";
 import "./DashboardLayoutHome.css";
 
-const ROWS = 3; // ← FIXED: Reduced to 3 rows
-const COLS = 4; // ← 3×4 grid = 12 slots max
+const ROWS = 3;
+const COLS = 3;
 
 interface SlotConfig {
   id: string;
@@ -16,40 +16,50 @@ interface SlotConfig {
 
 const WIDGET_SLOTS: SlotConfig[] = Array.from({ length: ROWS * COLS }, (_, i) => ({
   id: `slot${i + 1}`,
-})
+}));
+
+// ALL WIDGETS INCLUDING REVENUE
 const WIDGET_PALETTE: WidgetType[] = [
   "kanban",
   "chart",
   "metrics",
   "tasks",
   "calendar",
-  "revenue" as WidgetType,
-  "timeline" as WidgetType,
-  "notifications" as WidgetType,
-  "active-projects" as WidgetType,
+  "revenue",
 ];
 
+// REQUIRED FOR PLASMIC
 interface DashboardLayoutHomeProps {
   className?: string;
 }
 
 export default function DashboardLayoutHome({ className }: DashboardLayoutHomeProps) {
-  const { layout, addWidget, moveWidget, removeWidget } = useLayoutStore(  const [hoveredSlot, setHoveredSlot] = useState<string | null>(null  const [showPalette, setShowPalette] = useState(false  const dropRef = useRef<HTMLDivElement>(null
+  const { layout, addWidget, moveWidget, removeWidget } = useLayoutStore();
+  const [hoveredSlot, setHoveredSlot] = useState<string | null>(null);
+  const [showPalette, setShowPalette] = useState(false);
+  const dropRef = useRef<HTMLDivElement>(null);
+
   const [, drop] = useDrop(() => ({
     accept: "WIDGET",
-    drop: (item: { type: WidgetType; id?: string; gridSize?: { w: number; h: number } }, monitor) => {
-      const offset = monitor.getClientOffset(      if (!offset || !dropRef.current) return;
+    drop: (item: { type: WidgetType; id?: string }, monitor) => {
+      const offset = monitor.getClientOffset();
+      if (!offset || !dropRef.current) return;
 
-      const dropTarget = document.elementFromPoint(offset.x, offset.y      const slotElement = dropTarget?.closest("[data-slot-id]"      const slotId = slotElement?.getAttribute("data-slot-id"
+      const dropTarget = document.elementFromPoint(offset.x, offset.y);
+      const slotId = dropTarget?.closest("[data-slot-id]")?.getAttribute("data-slot-id");
+
       if (slotId) {
-        const size = item.gridSize || { w: 1, h: 1 };
         if (item.id) {
-          moveWidget(item.id, slotId, size        } else {
-          addWidget(item.type, slotId, size        }
+          moveWidget(item.id, slotId);
+        } else {
+          addWidget(item.type, slotId);
+        }
       }
     },
-  })
-  drop(dropRef
+  }));
+
+  drop(dropRef);
+
   return (
     <div
       ref={dropRef}
@@ -57,11 +67,11 @@ export default function DashboardLayoutHome({ className }: DashboardLayoutHomePr
       data-plasmic-name="DashboardLayoutHome"
       data-plasmic-id="dashboard-layout-home"
     >
-      {/* DARK COSMOS BACKGROUND */}
+      {/* DARK BACKGROUND */}
       <div className="dashboard-bg" />
 
-      {/* 3×4 FIXED GRID WITH MERGE SUPPORT */}
-      <div className="dashboard-grid" style={{position: "relative"}}>
+      {/* 3×3 GRID – FIXED HEIGHT, AUTO-SPACING */}
+      <div className="dashboard-grid">
         {WIDGET_SLOTS.map((slot) => (
           <WidgetSlot
             key={slot.id}
@@ -74,7 +84,7 @@ export default function DashboardLayoutHome({ className }: DashboardLayoutHomePr
         ))}
       </div>
 
-      {/* ENLARGED FAB + SCROLLABLE PALETTE */}
+      {/* FAB + DARK PALETTE */}
       <div className="fab-container">
         <button
           onClick={() => setShowPalette((p) => !p)}
@@ -82,11 +92,10 @@ export default function DashboardLayoutHome({ className }: DashboardLayoutHomePr
           aria-label="Add widget"
         >
           <svg
-            width="48"
-            height="48"
-            viewBox="0 0 24 24"
+            width="24"
+            height="24"
             fill="none"
-            stroke="currentColor"
+            stroke="white"
             strokeWidth="3"
             className={`fab-icon ${showPalette ? "rotate" : ""}`}
           >
@@ -97,20 +106,12 @@ export default function DashboardLayoutHome({ className }: DashboardLayoutHomePr
         {showPalette && (
           <div className="widget-palette">
             <div className="palette-title">Add Widget</div>
-            <div className="palette-scroll">
-              {WIDGET_PALETTE.map((type) => (
-                <DraggableWidget
-                  key={type}
-                  type={type}
-                  gridSize={
-                    type === "calendar" || type === "kanban" ? { w: 2, h: 2 } :
-                    type === "revenue" as WidgetType ? { w: 3, h: 2 } : { w: 1, h: 1 }
-                  }
-                />
-              ))}
-            </div>
+            {WIDGET_PALETTE.map((type) => (
+              <DraggableWidget key={type} type={type} />
+            ))}
           </div>
         )}
       </div>
     </div>
-  }
+  );
+}

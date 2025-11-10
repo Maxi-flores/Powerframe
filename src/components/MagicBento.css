@@ -1,0 +1,88 @@
+/* src/components/MagicBento.css */
+.magic-bento {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.stars-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bento-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.bento-text {
+  color: white;
+  transition: opacity 0.4s ease;
+}
+
+.bento-text h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(90deg, #0ea5e9, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bento-text p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+.auto-hide:hover {
+  opacity: 0;
+}
+
+/* SPOTLIGHT */
+.spotlight {
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(14, 165, 233, 0.15), transparent 50%);
+}
+
+/* BORDER GLOW */
+.border-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(from var(--gradient-angle, 0deg), #0ea5e9, #8b5cf6, #ec4899, #0ea5e9);
+  border-radius: 26px;
+  z-index: -1;
+  animation: rotate 8s linear infinite;
+}
+
+@keyframes rotate {
+  from { --gradient-angle: 0deg; }
+  to { --gradient-angle: 360deg; }
+}
+
+/* TILT */
+.tilt {
+  transform: perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
+  transition: transform 0.1s ease;
+}
+
+/* CLICK EFFECT */
+.click-effect:active {
+  transform: scale(0.95);
+}
