@@ -23,10 +23,6 @@ import Profile from "./pages/Profile.jsx";
 import Settings from "./pages/Settings.jsx";
 import Management from "./pages/Management.jsx";
 
-// Application Pages
-import CRM from "./pages/CRM.jsx";
-import Roadmap from "./pages/Roadmap.jsx";
-
 export default function App() {
   return (
     <ThemeProvider>
@@ -54,16 +50,6 @@ export default function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="settings" element={<Settings />} />
               <Route path="management" element={<Management />} />
-            </Route>
-
-            {/* CRM Application */}
-            <Route path="/crm" element={<DashboardLayout />}>
-              <Route index element={<CRM />} />
-            </Route>
-
-            {/* Roadmap Application */}
-            <Route path="/roadmap" element={<DashboardLayout />}>
-              <Route index element={<Roadmap />} />
             </Route>
 
             {/* Fallback */}

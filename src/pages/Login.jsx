@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../firebase.js";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,22 +16,36 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        localStorage.setItem("token", data.token);
-        navigate("/bms");
-      } else {
-        setError(data.message || "Login failed");
-      }
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      localStorage.setItem("powerframe_user", userCredential.user.uid);
+      navigate("/");
     } catch (err) {
-      setError("Server error. Please try again.");
+      if (err.code === "auth/user-not-found") {
+        setError("Email address not found");
+      } else if (err.code === "auth/wrong-password") {
+        setError("Incorrect password");
+      } else if (err.code === "auth/invalid-email") {
+        setError("Invalid email address");
+      } else {
+        setError(err.message || "Login failed. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleGoogleSignIn() {
+    setError("");
+    setLoading(true);
+
+    try {
+      const userCredential = await signInWithPopup(auth, googleProvider);
+      localStorage.setItem("powerframe_user", userCredential.user.uid);
+      navigate("/");
+    } catch (err) {
+      if (err.code !== "auth/popup-closed-by-user") {
+        setError("Google sign-in failed. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -54,29 +70,26 @@ export default function Login() {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-neon-violet to-neon-blue shadow-glow-violet mb-4">
-              <svg viewBox="0 0 24 24" className="w-8 h-8 text-white" fill="none">
-                <path d="M14 4c3.5 0 6 2.5 6 6-2.5 4-6.5 8-10.5 10.5-3.5 0-5.5-2-5.5-5.5C6 10.5 10 6.5 14 4Z" stroke="currentColor" strokeWidth="1.8" />
-                <path d="M10 14l-2 2M12 16l-2 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                <path d="M15.5 8.5h.01" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-              </svg>
+              <img src="/symbol_logo.png" alt="Powerframe" className="w-10 h-10" />
             </div>
             <h1 className="text-2xl font-bold tracking-wider text-white">powerframe</h1>
-            <p className="text-white/50 text-sm mt-2">Business Management System</p>
+            <p className="text-white/50 text-sm mt-2">Sign in to Powerframe</p>
           </div>
 
           {/* Form */}
           <form onSubmit={handleLogin} className="space-y-5">
             <div>
               <label className="block text-sm text-white/70 mb-2">
-                Username or email address
+                Email address
               </label>
               <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="input"
-                placeholder="Enter your username"
-                autoComplete="username"
+                placeholder="Enter your email"
+                autoComplete="email"
+                required
               />
             </div>
 
@@ -97,6 +110,7 @@ export default function Login() {
                 className="input"
                 placeholder="Enter your password"
                 autoComplete="current-password"
+                required
               />
             </div>
 
@@ -139,7 +153,12 @@ export default function Login() {
 
           {/* OAuth Buttons */}
           <div className="space-y-3">
-            <button className="w-full btn-glass py-3 group">
+            <button
+              type="button"
+              onClick={handleGoogleSignIn}
+              disabled={loading}
+              className="w-full btn-glass py-3 group disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
                 <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
@@ -149,7 +168,12 @@ export default function Login() {
               <span className="group-hover:text-white transition-colors">Continue with Google</span>
             </button>
 
-            <button className="w-full btn-glass py-3 group">
+            <button
+              type="button"
+              onClick={handleGoogleSignIn}
+              disabled={loading}
+              className="w-full btn-glass py-3 group disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
               </svg>

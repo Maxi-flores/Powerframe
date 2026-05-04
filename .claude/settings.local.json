@@ -5,7 +5,11 @@
       "Bash(netstat:*)",
       "Bash(findstr:*)",
       "Bash(tasklist:*)",
-      "Bash(wmic process:*)"
+      "Bash(wmic process:*)",
+      "PowerShell(Get-Process *)",
+      "Bash(Remove-Item -Path \"C:\\\\shared_folder\\\\Web.instinct\\\\ProfoundProjects\\\\Powerframe\\\\Claude\\\\Web\\\\src\\\\pages\\\\CRM.jsx\" -Force)",
+      "Bash(Remove-Item -Path \"C:\\\\shared_folder\\\\Web.instinct\\\\ProfoundProjects\\\\Powerframe\\\\Claude\\\\Web\\\\src\\\\pages\\\\Roadmap.jsx\" -Force)",
+      "Bash(Write-Output \"Files deleted successfully\")"
     ]
   }
 }

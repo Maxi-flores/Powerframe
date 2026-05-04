@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase.js";
+import { POWERFRAME_APPS, getAppHref, isExternalApp } from "../config/apps.js";
 import { useProjects } from "../context/ProjectContext.jsx";
 import { useTheme } from "../context/ThemeContext.jsx";
 import Copilot from "../components/Copilot.jsx";
@@ -16,11 +19,13 @@ export default function DashboardLayout() {
   const [showCopilot, setShowCopilot] = useState(false);
   const [search, setSearch] = useState("");
 
-  const appItems = [
-    { key: "BMS", path: "/bms", icon: Icons.rocket, color: "#7c3aed" },
-    { key: "CRM", path: "/crm", icon: Icons.users, color: "#2563eb" },
-    { key: "Roadmap", path: "/roadmap", icon: Icons.map, color: "#0891b2" },
-  ];
+  const appItems = POWERFRAME_APPS.map(app => ({
+    key: app.name,
+    path: getAppHref(app),
+    icon: Icons[app.iconKey] ?? Icons.rocket,
+    color: app.accent,
+    isExternal: isExternalApp(app),
+  }));
 
   const navItems = [
     { key: "Dashboard", path: "/bms", icon: Icons.home },
@@ -40,9 +45,15 @@ export default function DashboardLayout() {
 
   const activeApp = appItems.find(a => currentPath.startsWith(a.path))?.key || "BMS";
 
-  function handleLogout() {
-    localStorage.removeItem("token");
-    navigate("/bms-login");
+  async function handleLogout() {
+    try {
+      await signOut(auth);
+      localStorage.removeItem("token");
+      localStorage.removeItem("powerframe_user");
+      navigate("/bms-login");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
   }
 
   // Close menu when clicking outside
@@ -99,12 +110,11 @@ export default function DashboardLayout() {
               className="flex items-center gap-2.5 p-2 rounded-[14px] cursor-pointer transition-colors duration-150 hover:bg-white/[0.06] overflow-hidden"
               onClick={() => setShowProjectSwitcher(!showProjectSwitcher)}
             >
-              <div
-                className="w-[38px] h-[38px] min-w-[38px] rounded-xl flex items-center justify-center text-white shadow-inner-glow"
-                style={{ background: activeProject?.color || currentTheme.accent }}
-              >
-                {Icons.rocket}
-              </div>
+              <img
+                src="/symbol_logo_small.png"
+                alt="Powerframe"
+                className="w-[38px] h-[38px] min-w-[38px] rounded-xl shadow-inner-glow"
+              />
               <div className={`transition-all duration-300 whitespace-nowrap overflow-hidden ${
                 sidebarExpanded ? 'opacity-100 w-auto' : 'opacity-0 w-0'
               }`}>
@@ -169,7 +179,7 @@ export default function DashboardLayout() {
                     background: `${app.color}22`,
                     borderColor: `${app.color}66`
                   } : {}}
-                  onClick={() => navigate(app.path)}
+                  onClick={() => app.isExternal ? window.location.href = app.path : navigate(app.path)}
                   title={app.key}
                 >
                   <span className="min-w-[20px] flex items-center justify-center">{app.icon}</span>
@@ -242,8 +252,8 @@ export default function DashboardLayout() {
             {/* Left - Logo */}
             <div className="flex items-center gap-3 min-w-0 lg:min-w-[240px]">
               <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-2xl border border-white/10 bg-white/[0.04]">
-                <span className="flex items-center text-neon-violet">{Icons.power}</span>
-                <span className="font-bold text-[13px] hidden sm:block">PowerStarter</span>
+                <img src="/symbol_logo_small.png" alt="Powerframe" className="w-5 h-5 flex items-center text-neon-violet" />
+                <span className="font-bold text-[13px] hidden sm:block">Powerframe</span>
               </div>
               <div className="font-extrabold text-lg hidden lg:block">| {activeKey}</div>
             </div>
@@ -344,7 +354,7 @@ export default function DashboardLayout() {
           {/* Footer */}
           <footer className="h-9 flex items-center justify-center flex-shrink-0">
             <div className="flex items-center gap-2 opacity-35 text-white/75 text-xs font-bold tracking-wider lowercase">
-              <span>{Icons.powerSmall}</span>
+              <img src="/symbol_logo_small.png" alt="Powerframe" className="w-4 h-4" />
               <span>powerframe</span>
             </div>
           </footer>
