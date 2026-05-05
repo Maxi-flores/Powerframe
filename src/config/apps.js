@@ -5,7 +5,7 @@ export const POWERFRAME_APPS = [
     fullName: "Business Management System",
     description:
       "Business, project, dashboard, local/web/game environment management system.",
-    externalUrl: "http://localhost:5178",
+    externalUrl: "https://bms.powerframe.online",
     repo: "git@github.com:Maxi-flores/Powerframe-BMS-V1.git",
     status: "external",
     accent: "#7c3aed",
@@ -21,7 +21,7 @@ export const POWERFRAME_APPS = [
     fullName: "Customer Relationship Management",
     description:
       "Customer accounts, webshop integrations, service relationships, and connected users.",
-    externalUrl: "http://localhost:5171",
+    externalUrl: "https://crm.powerframe.online",
     repo: "git@github.com:Maxi-flores/Powerframe-CRM.git",
     status: "external",
     accent: "#2563eb",
@@ -37,7 +37,7 @@ export const POWERFRAME_APPS = [
     fullName: "Roadmap / Knowledgebase Builder",
     description:
       "Project notes, AI notes, roadmap planning, prompt orchestration, and knowledgebase building.",
-    externalUrl: "http://localhost:4173",
+    externalUrl: "https://tpr.powerframe.online",
     repo: "git@github.com:Maxi-flores/TimePlanner.git",
     status: "external",
     accent: "#0891b2",
