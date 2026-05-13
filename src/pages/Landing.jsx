@@ -23,6 +23,13 @@ const ICON_MAP = {
       <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
+  wallet: (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" className="text-neon-green">
+      <path d="M4 7.5A2.5 2.5 0 016.5 5H18a2 2 0 012 2v10a2 2 0 01-2 2H5.5A2.5 2.5 0 013 16.5v-8A2.5 2.5 0 015.5 6H18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M16 12h4v4h-4a2 2 0 010-4Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M17.5 14h.01" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+    </svg>
+  ),
 };
 
 export default function Landing() {
@@ -76,12 +83,12 @@ export default function Landing() {
             </span>
           </h1>
           <p className="text-lg text-white/60 max-w-xl mx-auto">
-            Your gateway to interconnected applications. Launch BMS, CRM, and planning tools from one unified hub.
+            Your gateway to interconnected applications. Launch CRM, GMS, TPR, and WMS from one unified hub.
           </p>
         </div>
 
         {/* App Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 w-full max-w-6xl mb-12">
           {POWERFRAME_APPS.map(app => (
             <div
               key={app.id}
