@@ -53,7 +53,7 @@ export const POWERFRAME_APPS = [
     fullName: "Wealth Mission System",
     description:
       "Gamified capital mapping, budget forecasting, project investment simulation, and risk/opportunity planning.",
-    externalUrl: "http://localhost:3000",
+    externalUrl: "https://wms.powerframe.online",
     repo: "git@github.com:Maxi-flores/Powerframe-WMS.git",
     status: "external",
     accent: "#10b981",
