@@ -158,10 +158,10 @@ powerframe-gms/
 
 ## Sapient 3D Knowledge Tree Read-Only Morphology Guidelines
 
-- **Read-only binding**: visualization consumes telemetry, no mutation writes
-- **Signal normalization**: cross-app values translated into shared growth units
-- **Cadence governance**: redraw aligned to GMS frame clock (hub tick), jitter suppression enforced
-- **Surface isolation**: per-branch rendering isolated from source runtimes
+- **Read-only binding**: visualization consumes telemetry; no mutation writes
+- **Signal normalization**: cross-app values translated into shared growth units; scale-aligned
+- **Cadence governance**: redraw aligned to hub tick (GMS frame clock); jitter suppression enforced
+- **Surface isolation**: per-branch rendering isolated from source runtimes; frame-local
 
 | Workspace Location | Knowledge Tree Signal Group | Visualized Variables | Output Surfaces |
 |---|---|---|---|
