@@ -1,44 +1,49 @@
-# UNIFIED REPOSITORY & PROJECT WORKSPACE TOPOLOGY
+# 1. UNIFIED REPOSITORY & PROJECT WORKSPACE TOPOLOGY
 
-## Global Monorepo Axis
-
-Powerframe Hub is a monorepo with four workspaces; the GMS (Game Manager System) Hub provides the unified shell and session control.
+## Global Monorepo Axis Layout
 
 ```
 Powerframe-Monorepo/
 ├── powerframe-gms/    # Game Manager System central shell architecture
 ├── powerframe-crm/    # Customer Relation Manager operations portal
-├── powerframe-wms/    # Wealth Manager System economic portfolio, not warehouse
+├── powerframe-wms/    # Wealth Manager System economic portfolio
 └── TimePlanner/       # Time Planner roadmap simulation ticks workspace
 ```
 
+- **powerframe-gms/**: unified shell, auth gate, nav spine, shared UI frame
+- **powerframe-crm/**: customer operations, ticket flow, escalation relay
+- **powerframe-wms/**: economic telemetry, portfolio state, ledger signals
+- **TimePlanner/**: tick simulator, roadmap cadence, temporal rules
+
 ## Hub Unification Contract
 
-- **Glassmorphic shell**: layout context for nav and tools.
-- **Synchronization bridges**: time-aligned event frames, cross-app mirrors, and resilience.
-- **Boundary control**: GMS mediates shared identifiers; apps keep data local.
-- **Viewport delegation**: route mounts render app views without leaking logic.
+- **Glassmorphic shell layout**: GMS owns translucent chrome, blur layers, and persistent navigation rails
+- **Synchronization bridges**: cross-app event frames aligned to hub clock; mirror-only propagation
+- **Boundary control**: shared identifiers brokered by GMS; domain data stays local
+- **Viewport delegation paths**: routed views mount inside shell slots; no cross-portal logic bleed
 
 ## Workspace Coordination Table
 
 | Workspace | Primary Role | Shell Ownership | Cross-App Contract | Runtime Boundary |
 |---|---|---|---|---|
-| `powerframe-gms/` | Command | Full shell | Layout + auth | Global nav |
-| `powerframe-crm/` | Customer ops | Delegated | Escalation events | Isolated stores |
+| `powerframe-gms/` | Command hub | Full shell | Layout + auth gate | Global nav frame |
+| `powerframe-crm/` | Customer ops | Delegated | Event escalation | Isolated stores |
 | `powerframe-wms/` | Economic telemetry | Delegated | Metric stream | High-frequency feeds |
 | `TimePlanner/` | Timeline simulation | Delegated | Tick cadence | Discrete clock |
 
-# COMPREHENSIVE DIRECTORY LAYOUT SPECIFICATION
+# 2. COMPREHENSIVE DIRECTORY LAYOUT SPECIFICATION
 
-## Full Tree of the GMS Hub Workspace
+## powerframe-gms/ Workspace Tree
 
 ```
 powerframe-gms/
 ├── index.html
+├── package.json
+├── package-lock.json
 ├── vite.config.js
 ├── tailwind.config.js
+├── postcss.config.js
 ├── vercel.json
-├── package.json
 ├── api/
 │   ├── health.js
 │   └── auth/
@@ -48,6 +53,14 @@ powerframe-gms/
 ├── src/
 │   ├── main.jsx
 │   ├── App.jsx
+│   ├── index.css
+│   ├── firebase.js
+│   ├── config/
+│   │   └── apps.js
+│   ├── img/
+│   │   ├── symbol_logo.png
+│   │   ├── symbol_logo_small.png
+│   │   └── symbol_splash_powerframe_logo.png
 │   ├── components/
 │   │   ├── Copilot.jsx
 │   │   └── KnowledgeTree3D.jsx
@@ -81,23 +94,27 @@ powerframe-gms/
 
 ## Layout Role Index
 
-| Node | Classification | Primary Duty | Coupling |
+| Node | Classification | Primary Duty | Coupling Constraints |
 |---|---|---|---|
-| `index.html` | Root entry | SPA mount | Runtime core |
-| `vite.config.js` | Build control | HMR + proxy | Build-only |
-| `tailwind.config.js` | Theme system | Glass tokens | Styling core |
-| `vercel.json` | Edge routing | SPA rewrites | Deploy-only |
-| `api/` | Serverless layer | Auth + health | Stateless |
-| `src/main.jsx` | Execution root | React mount | Critical |
-| `src/App.jsx` | Router gate | Route map | Critical |
-| `layouts/DashboardLayout.jsx` | Shell core | Frame + outlet | GMS-owned |
-| `pages/*` | Route views | Feature UI | Viewport |
+| `index.html` | Root entry | SPA mount + preloads | Runtime core only |
+| `package.json` | Dependency graph | Runtime + toolchain | Build-time coupling |
+| `vite.config.js` | Build control | HMR, bundling, base path | Build-only |
+| `tailwind.config.js` | Theme system | Glass tokens, palette grid | Styling core |
+| `postcss.config.js` | CSS pipeline | Vendor prefix + transforms | Build-only |
+| `vercel.json` | Edge routing | SPA rewrites, function map | Deploy-only |
+| `api/` | Serverless layer | Auth + health endpoints | Stateless boundary |
+| `src/main.jsx` | Execution root | React mount + providers | Critical path |
+| `src/App.jsx` | Router gate | Route spine + guards | Critical path |
+| `components/*` | UI modules | Shell widgets + tools | Leaf-only |
+| `layouts/DashboardLayout.jsx` | Shell core | Frame + outlet + rails | GMS-owned |
+| `context/*` | State core | Shared in-memory state | Local-only |
+| `pages/*` | View modules | Route-bound surfaces | Viewport-only |
+| `Concepts/` | Legacy refs | Deprecated auth prototypes and design experiments | No runtime use |
+| `tools/` | Utilities | Maintenance aids | Dev-only |
 
-# STRUCTURAL ROUTING MATRIX (REACT ROUTER V7)
+# 3. STRUCTURAL ROUTING MATRIX (REACT ROUTER V7)
 
-## Router Spine
-
-GMS uses React Router v7 with a public entry and secured operator gate; protected viewports sit under a single `DashboardLayout` shell.
+## Router Spine Paths
 
 ```
 /               → Landing (public)
@@ -122,56 +139,59 @@ GMS uses React Router v7 with a public entry and secured operator gate; protecte
 | Path | Access Gate | Container | View Module | Session Impact |
 |---|---|---|---|---|
 | `/` | Public | Standalone | `Landing` | Minimal |
-| `/gms-login` | Public | Standalone | `Login` | Token |
-| `/gms` | Protected | `DashboardLayout` | `Overview` | Context |
-| `/gms/projects` | Protected | `DashboardLayout` | `Projects` | Projects |
-| `/gms/tasks` | Protected | `DashboardLayout` | `Tasks` | Tasks |
-| `/gms/plans` | Protected | `DashboardLayout` | `Plans` | Plans |
-| `/gms/out` | Protected | `DashboardLayout` | `Out` | Outbox |
-| `/gms/search` | Protected | `DashboardLayout` | `WebSearch` | Search |
-| `/gms/files` | Protected | `DashboardLayout` | `Files` | Files |
-| `/gms/info` | Protected | `DashboardLayout` | `Info` | Info |
-| `/gms/notifications` | Protected | `DashboardLayout` | `Notifications` | Alerts |
-| `/gms/profile` | Protected | `DashboardLayout` | `Profile` | Profile |
-| `/gms/settings` | Protected | `DashboardLayout` | `Settings` | Settings |
-| `/gms/management` | Protected | `DashboardLayout` | `Management` | Admin |
+| `/gms-login` | Public | Standalone | `Login` | Token seed |
+| `/gms` | Protected | `DashboardLayout` | `Overview` | Context boot |
+| `/gms/projects` | Protected | `DashboardLayout` | `Projects` | Project scope |
+| `/gms/tasks` | Protected | `DashboardLayout` | `Tasks` | Task state |
+| `/gms/plans` | Protected | `DashboardLayout` | `Plans` | Plan buffer |
+| `/gms/out` | Protected | `DashboardLayout` | `Out` | Outbox state |
+| `/gms/search` | Protected | `DashboardLayout` | `WebSearch` | Query cache |
+| `/gms/files` | Protected | `DashboardLayout` | `Files` | File index |
+| `/gms/info` | Protected | `DashboardLayout` | `Info` | Reference pane |
+| `/gms/notifications` | Protected | `DashboardLayout` | `Notifications` | Alert queue |
+| `/gms/profile` | Protected | `DashboardLayout` | `Profile` | Identity data |
+| `/gms/settings` | Protected | `DashboardLayout` | `Settings` | Preference state |
+| `/gms/management` | Protected | `DashboardLayout` | `Management` | Admin controls |
 
-# CROSS-REPOSITORY MODULE MAPPING MATRIX
+# 4. CROSS-REPOSITORY MODULE MAPPING MATRIX
 
-Sapient 3D Knowledge Tree rendering binds cross-repository telemetry to read-only morphology.
+## Sapient 3D Knowledge Tree Read-Only Morphology Guidelines
 
-| Workspace Location | Knowledge Tree Signal Group | Visualized Variables | Output Surface |
+- **Read-only binding**: visualization consumes telemetry; no mutation writes
+- **Signal normalization**: cross-app values translated into shared growth units
+- **Surface isolation**: per-branch rendering isolated from source runtimes
+- **Cadence governance**: redraw aligned to hub tick (GMS frame clock) to prevent jitter
+
+| Workspace Location | Knowledge Tree Signal Group | Visualized Variables | Output Surfaces |
 |---|---|---|---|
 | `powerframe-wms/` | Rolling financial volumes | Leaf count, blossom scale | Canopy density |
 | `powerframe-crm/` | Latency spikes, 5xx exceptions | Albedo shifts, emissive glow | Branch shimmer |
 | `TimePlanner/` | Iteration step frequency | Task velocity, split kinetics | Growth cadence |
 | `powerframe-gms/` | Global health indexes | Trunk height baseline | Core pulse |
 
-# ARCHITECTURAL IN-MEMORY SYNC CONSTRAINTS
+# 5. ARCHITECTURAL IN-MEMORY SYNC CONSTRAINTS
 
 ## Live Stream Isolation
 
-Real-time streaming payloads handled by `LiveStreamContext.jsx` remain inside volatile memory only; they are never serialized to disk or local storage.
-
-- **In-memory only**: stream frames live in context state.
-- **No persistence**: reload reconstructs from upstream sources.
-- **Local mutation rule**: reducer-style updates only.
+- **Volatile-only frames**: `LiveStreamContext.jsx` retains streams in memory
+- **Zero persistence**: no disk, no localStorage, no sessionStorage writes
+- **Reducer-safe mutations**: deterministic state transitions only
 
 ## Fallback Recovery Strategy
 
-1. **Surge detection**: latency threshold triggers soft fail state.
-2. **Viewport freeze**: layout geometry locks to last snapshot.
-3. **Buffer reset and restore**: clear frames, rehydrate validated metrics, resume cadence.
+1. **Surge detection**: latency threshold trips soft-fail state
+2. **Viewport freeze**: geometry locks to last stable snapshot
+3. **Buffer reset/restore**: clear frames, rehydrate verified metrics, resume cadence
 
 ## Idempotency Execution Rules
 
-- **Idempotent events**: identical inputs yield identical frame signatures.
-- **No file writes**: UI interactions never mutate source files.
-- **Traceable frames**: deterministic hash per event.
+- **Deterministic signatures**: identical inputs yield identical outputs
+- **No source writes**: UI interaction never mutates repository files
+- **Replay-safe frames**: hash-stable event sequence
 
 ## Runtime State Boundaries
 
-| State Domain | Storage Tier | Mutation Policy | Reset Trigger |
+| State Domain | Storage Tier | Mutation Policy | Reset Triggers |
 |---|---|---|---|
 | Stream frames | Volatile memory | Reducer-controlled | Refresh or surge |
 | Layout metrics | Volatile memory | Snapshot overwrite | Shell reflow |
