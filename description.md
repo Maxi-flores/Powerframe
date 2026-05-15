@@ -26,10 +26,10 @@ Powerframe-Monorepo/
 
 ## Hub Unification Contract
 
-- **Glassmorphic shell layout**: GMS owns translucent chrome, blur layers, persistent rails
-- **Synchronization bridges**: cross-app event frames aligned to hub clock, mirror-only propagation
-- **Boundary control**: shared identifiers brokered by GMS, domain data stays local
-- **Viewport delegation paths**: routed views mount inside shell slots, no cross-portal logic bleed
+- **Glassmorphic shell layout**: GMS owns translucent chrome; blur layers; persistent rails
+- **Synchronization bridges**: cross-app event frames aligned to hub clock; mirror-only propagation; relay guardrails
+- **Boundary control**: shared identifiers brokered by GMS; domain data stays local; scope locks enforced
+- **Viewport delegation paths**: routed views mount inside shell slots; no cross-portal logic bleed; outlet isolation
 
 # 2. COMPREHENSIVE DIRECTORY LAYOUT SPECIFICATION
 
@@ -160,7 +160,7 @@ powerframe-gms/
 
 - **Read-only binding**: visualization consumes telemetry, zero mutation writes
 - **Signal normalization**: cross-app values translated into shared growth units
-- **Cadence governance**: redraw aligned to hub tick (GMS frame clock), jitter suppression enforced
+- **Cadence governance**: redraw aligned to hub tick timing (GMS frame clock cadence), jitter suppression enforced
 - **Surface isolation**: per-branch rendering isolated from source runtimes
 
 | Workspace Location | Knowledge Tree Signal Group | Visualized Variables | Output Surfaces |
