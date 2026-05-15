@@ -160,7 +160,7 @@ powerframe-gms/
 
 - **Read-only binding**: visualization consumes telemetry, zero mutation writes
 - **Signal normalization**: cross-app values translated into shared growth units
-- **Cadence governance**: redraw aligned to hub tick, jitter suppression enforced
+- **Cadence governance**: redraw aligned to hub tick (GMS frame clock), jitter suppression enforced
 - **Surface isolation**: per-branch rendering isolated from source runtimes
 
 | Workspace Location | Knowledge Tree Signal Group | Visualized Variables | Output Surfaces |
