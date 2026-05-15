@@ -8,13 +8,13 @@ Powerframe Hub is a monorepo with four workspaces; the GMS (Game Manager System)
 Powerframe-Monorepo/
 ├── powerframe-gms/    # Game Manager System central shell architecture
 ├── powerframe-crm/    # Customer Relation Manager operations portal
-├── powerframe-wms/    # Wealth Manager System economic dashboard portfolio
+├── powerframe-wms/    # Wealth Manager System economic portfolio, not warehouse
 └── TimePlanner/       # Time Planner roadmap simulation ticks workspace
 ```
 
 ## Hub Unification Contract
 
-- **Glassmorphic shell**: single layout context for nav and tools.
+- **Glassmorphic shell**: layout context for nav and tools.
 - **Synchronization bridges**: time-aligned event frames, cross-app mirrors, and resilience.
 - **Boundary control**: GMS mediates shared identifiers; apps keep data local.
 - **Viewport delegation**: route mounts render app views without leaking logic.
