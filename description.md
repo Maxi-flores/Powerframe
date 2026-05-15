@@ -10,17 +10,10 @@ Powerframe-Monorepo/
 └── TimePlanner/       # Time Planner roadmap simulation ticks workspace
 ```
 
-- **powerframe-gms/**: unified shell, auth gate, nav spine, shared UI frame
-- **powerframe-crm/**: customer operations, ticket flow, escalation relay
-- **powerframe-wms/**: economic telemetry, portfolio state, ledger signals
-- **TimePlanner/**: tick simulator, roadmap cadence, temporal rules
-
-## Hub Unification Contract
-
-- **Glassmorphic shell layout**: GMS owns translucent chrome, blur layers, and persistent navigation rails
-- **Synchronization bridges**: cross-app event frames aligned to hub clock; mirror-only propagation
-- **Boundary control**: shared identifiers brokered by GMS; domain data stays local
-- **Viewport delegation paths**: routed views mount inside shell slots; no cross-portal logic bleed
+- `powerframe-gms/`: unified shell | auth gate | navigation spine | glass chrome
+- `powerframe-crm/`: customer operations | ticket flow | escalation relay | SLA telemetry
+- `powerframe-wms/`: economic telemetry | portfolio state | ledger signals | risk pulse
+- `TimePlanner/`: tick simulator | roadmap cadence | temporal rules | sync clock
 
 ## Workspace Coordination Table
 
@@ -30,6 +23,13 @@ Powerframe-Monorepo/
 | `powerframe-crm/` | Customer ops | Delegated | Event escalation | Isolated stores |
 | `powerframe-wms/` | Economic telemetry | Delegated | Metric stream | High-frequency feeds |
 | `TimePlanner/` | Timeline simulation | Delegated | Tick cadence | Discrete clock |
+
+## Hub Unification Contract
+
+- **Glassmorphic shell layout**: GMS owns translucent chrome, blur layers, persistent rails
+- **Synchronization bridges**: cross-app event frames aligned to hub clock, mirror-only propagation
+- **Boundary control**: shared identifiers brokered by GMS, domain data stays local
+- **Viewport delegation paths**: routed views mount inside shell slots, no cross-portal logic bleed
 
 # 2. COMPREHENSIVE DIRECTORY LAYOUT SPECIFICATION
 
@@ -57,7 +57,7 @@ powerframe-gms/
 │   ├── firebase.js
 │   ├── config/
 │   │   └── apps.js
-│   ├── img/
+│   ├── assets/
 │   │   ├── symbol_logo.png
 │   │   ├── symbol_logo_small.png
 │   │   └── symbol_splash_powerframe_logo.png
@@ -67,9 +67,9 @@ powerframe-gms/
 │   ├── layouts/
 │   │   └── DashboardLayout.jsx
 │   ├── context/
+│   │   ├── LiveStreamContext.jsx
 │   │   ├── ProjectContext.jsx
-│   │   ├── ThemeContext.jsx
-│   │   └── LiveStreamContext.jsx
+│   │   └── ThemeContext.jsx
 │   └── pages/
 │       ├── Landing.jsx
 │       ├── Login.jsx
@@ -105,11 +105,12 @@ powerframe-gms/
 | `api/` | Serverless layer | Auth + health endpoints | Stateless boundary |
 | `src/main.jsx` | Execution root | React mount + providers | Critical path |
 | `src/App.jsx` | Router gate | Route spine + guards | Critical path |
+| `src/assets/*` | Asset pack | Shell imagery + marks | Read-only |
 | `components/*` | UI modules | Shell widgets + tools | Leaf-only |
 | `layouts/DashboardLayout.jsx` | Shell core | Frame + outlet + rails | GMS-owned |
 | `context/*` | State core | Shared in-memory state | Local-only |
 | `pages/*` | View modules | Route-bound surfaces | Viewport-only |
-| `Concepts/` | Legacy refs | Deprecated auth prototypes and design experiments | No runtime use |
+| `Concepts/` | Legacy refs | Deprecated auth prototypes | No runtime use |
 | `tools/` | Utilities | Maintenance aids | Dev-only |
 
 # 3. STRUCTURAL ROUTING MATRIX (REACT ROUTER V7)
@@ -157,10 +158,10 @@ powerframe-gms/
 
 ## Sapient 3D Knowledge Tree Read-Only Morphology Guidelines
 
-- **Read-only binding**: visualization consumes telemetry; no mutation writes
+- **Read-only binding**: visualization consumes telemetry, zero mutation writes
 - **Signal normalization**: cross-app values translated into shared growth units
+- **Cadence governance**: redraw aligned to hub tick, jitter suppression enforced
 - **Surface isolation**: per-branch rendering isolated from source runtimes
-- **Cadence governance**: redraw aligned to hub tick (GMS frame clock) to prevent jitter
 
 | Workspace Location | Knowledge Tree Signal Group | Visualized Variables | Output Surfaces |
 |---|---|---|---|
@@ -176,6 +177,7 @@ powerframe-gms/
 - **Volatile-only frames**: `LiveStreamContext.jsx` retains streams in memory
 - **Zero persistence**: no disk, no localStorage, no sessionStorage writes
 - **Reducer-safe mutations**: deterministic state transitions only
+- **Frame hygiene**: expunge orphaned payloads on clock drift
 
 ## Fallback Recovery Strategy
 
