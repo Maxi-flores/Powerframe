@@ -51,6 +51,16 @@ export default function Login() {
     }
   }
 
+  function handleDemoBypass() {
+    setError("");
+    setLoading(true);
+
+    localStorage.setItem("powerframe_user", "demo");
+    localStorage.setItem("powerframe_demo", "true");
+    navigate("/", { replace: true });
+    setLoading(false);
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-navy-gradient">
       {/* Background Effects */}
@@ -141,6 +151,15 @@ export default function Login() {
               ) : (
                 "Sign in"
               )}
+            </button>
+
+            <button
+              type="button"
+              onClick={handleDemoBypass}
+              disabled={loading}
+              className="w-full btn-glass py-3 text-sm font-semibold tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Demo Version
             </button>
           </form>
 
