@@ -1,0 +1,19 @@
+/exec read and modify component layouts
+Goal: Fix the left corner logo scaling issue and implement a "Demo Version" bypass button to route users directly into the hub environment, skipping the login screen.
+
+Context:
+- Target files: 
+  - Header / Navbar components (where the top-left logo is rendered).
+  - Login / Authentication / Welcome screen components.
+  - Routing configuration files.
+
+Instructions to Codex:
+1. Locate the top-left logo component in the layout header.
+2. Fix the scaling issue: Remove any constraints causing it to look squished or narrow. Adjust the Tailwind/CSS properties (e.g., replace fixed widths with `w-auto`, apply `object-contain`, or ensure the aspect-ratio is properly preserved) so it scales beautifully and maintains its original proportions.
+3. Locate the Login/Authentication page or Welcome screen.
+4. Add a new action button labeled "Demo Version" (or a stylized cyber/terminal equivalent).
+5. Implement the bypass route: Code the click handler for this button to programmatically authenticates a mock session or bypasses the auth guard entirely, routing the user straight into the main Hub environment layout.
+
+Constraints:
+- Ensure the logo styling remains responsive across mobile and desktop headers.
+- The Demo bypass must correctly set any minimal state/context required by the Hub environment to prevent runtime undefined errors.
