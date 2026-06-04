@@ -40,6 +40,7 @@ export default function Landing() {
     try {
       await signOut(auth);
       localStorage.removeItem("powerframe_user");
+      localStorage.removeItem("powerframe_demo");
       navigate("/");
     } catch (error) {
       console.error("Logout error:", error);
@@ -62,7 +63,11 @@ export default function Landing() {
       {/* Header */}
       <header className="relative z-10 p-6 lg:p-8 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <img src="/symbol_logo_small.png" alt="Powerframe" className="w-10 h-10" />
+          <img
+            src="/symbol_logo_small.png"
+            alt="Powerframe"
+            className="h-10 w-auto object-contain shrink-0"
+          />
           <span className="text-xl font-bold text-white">Powerframe</span>
         </div>
         <button
