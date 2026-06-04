@@ -40,6 +40,7 @@ export default function Landing() {
     try {
       await signOut(auth);
       localStorage.removeItem("powerframe_user");
+      localStorage.removeItem("powerframe_demo");
       navigate("/");
     } catch (error) {
       console.error("Logout error:", error);
