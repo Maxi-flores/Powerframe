@@ -66,12 +66,12 @@ export default function Login() {
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none">
         {/* Gradient overlay */}
-        <div className="absolute inset-[-100px] bg-gradient-to-br from-neon-violet/30 via-transparent to-neon-blue/20" />
+        <div className="absolute inset-[-100px] bg-gradient-to-br from-powerstarter-blue/10 via-transparent to-powerstarter-red/8" />
         {/* Radial glow - center */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-neon-violet/15 rounded-full blur-[150px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-powerstarter-blue/6 rounded-full blur-[150px]" />
         {/* Light streaks */}
-        <div className="absolute top-1/4 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-neon-violet/30 to-transparent rotate-[20deg] blur-sm" />
-        <div className="absolute bottom-1/4 right-0 w-full h-[1px] bg-gradient-to-r from-transparent via-neon-blue/20 to-transparent -rotate-[15deg] blur-sm" />
+        <div className="absolute top-1/4 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-powerstarter-blue/14 to-transparent rotate-[20deg] blur-sm" />
+        <div className="absolute bottom-1/4 right-0 w-full h-[1px] bg-gradient-to-r from-transparent via-powerstarter-red/10 to-transparent -rotate-[15deg] blur-sm" />
       </div>
 
       {/* Login Card */}
@@ -79,11 +79,11 @@ export default function Login() {
         <div className="glass-card-solid p-10 rounded-3xl shadow-glass-xl">
           {/* Logo */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-neon-violet to-neon-blue shadow-glow-violet mb-4">
-              <img src="/symbol_logo.png" alt="Powerframe" className="w-10 h-10" />
+            <div className="inline-flex items-center justify-center w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-3xl bg-gradient-to-br from-powerstarter-blue/12 to-powerstarter-red/10 border border-white/10 shadow-glow-powerstarter mb-4">
+              <img src="/logo.svg" alt="Powerstarter" className="auth-logo logo-glow" />
             </div>
-            <h1 className="text-2xl font-bold tracking-wider text-white">powerframe</h1>
-            <p className="text-white/50 text-sm mt-2">Sign in to Powerframe</p>
+            <h1 className="text-2xl font-bold tracking-wider text-white">Powerstarter</h1>
+            <p className="text-white/50 text-sm mt-2">Sign in to Powerstarter</p>
           </div>
 
           {/* Form */}
@@ -108,7 +108,7 @@ export default function Login() {
                 <label className="text-sm text-white/70">Password</label>
                 <button
                   type="button"
-                  className="text-xs text-neon-blue hover:text-neon-cyan transition-colors"
+                  className="text-xs text-powerstarter-blue hover:text-powerstarter-red transition-colors"
                 >
                   Forgot password?
                 </button>
@@ -126,7 +126,7 @@ export default function Login() {
 
             {/* Error Message */}
             {error && (
-              <div className="flex items-center gap-2 p-3 rounded-xl bg-neon-red/10 border border-neon-red/30 text-neon-red text-sm animate-fade-in">
+              <div className="flex items-center gap-2 p-3 rounded-xl bg-powerstarter-red/8 border border-powerstarter-red/20 text-powerstarter-red text-sm animate-fade-in">
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
@@ -184,7 +184,7 @@ export default function Login() {
                 <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
                 <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
               </svg>
-              <span className="group-hover:text-white transition-colors">Continue with Google</span>
+              <span className="group-hover:text-white transition-colors">Sign in with Google</span>
             </button>
 
             <button
@@ -202,8 +202,8 @@ export default function Login() {
 
           {/* Create Account */}
           <p className="text-center text-sm text-white/50 mt-8">
-            New to Powerframe?{" "}
-            <button className="text-neon-violet hover:text-neon-blue transition-colors font-medium">
+            New to Powerstarter?{" "}
+            <button className="text-powerstarter-blue hover:text-powerstarter-red transition-colors font-medium">
               Create an account
             </button>
           </p>
@@ -217,3 +217,4 @@ export default function Login() {
     </div>
   );
 }
+
