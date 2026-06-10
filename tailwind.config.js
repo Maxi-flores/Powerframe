@@ -18,23 +18,17 @@ export default {
           heavy: 'rgba(255, 255, 255, 0.12)',
           solid: 'rgba(255, 255, 255, 0.15)',
         },
-        // Powerstarter Accent Colors
-        powerstarter: {
-          blue: '#2563eb',
-          blueBright: '#38bdf8',
-          blueDeep: '#1d4ed8',
-          red: '#ef4444',
-          redBright: '#ff3b30',
-          redDeep: '#991b1b',
-        },
-        // Legacy accent aliases kept for compatibility with the scaffold utilities
+        // Neon Accent Colors
         neon: {
-          blue: '#ef4444',
-          cyan: '#38bdf8',
-          blueDeep: '#1d4ed8',
-          orange: '#f97316',
-          red: '#ef4444',
-          amber: '#f59e0b',
+          violet: '#8B5CF6',
+          blue: '#3B82F6',
+          cyan: '#06B6D4',
+          purple: '#A855F7',
+          pink: '#EC4899',
+          green: '#22C55E',
+          orange: '#F97316',
+          red: '#EF4444',
+          amber: '#F59E0B',
         },
         // Surface Colors
         surface: {
@@ -45,22 +39,20 @@ export default {
       },
       backgroundImage: {
         // Deep Navy Gradient (Primary Background)
-        'navy-gradient': 'radial-gradient(circle at 18% 18%, rgba(56, 189, 248, 0.13), transparent 32%), radial-gradient(circle at 82% 12%, rgba(239, 68, 68, 0.10), transparent 30%), linear-gradient(180deg, #050814 0%, #080b16 52%, #050814 100%)',
-        'navy-radial': 'radial-gradient(circle at 18% 18%, rgba(56, 189, 248, 0.13), transparent 32%), radial-gradient(circle at 82% 12%, rgba(239, 68, 68, 0.10), transparent 30%), linear-gradient(180deg, #050814 0%, #080b16 52%, #050814 100%)',
-        'powerstarter-gradient': 'linear-gradient(135deg, #2563eb 0%, #38bdf8 72%, #ef4444 140%)',
-        'powerstarter-radial': 'radial-gradient(circle at 18% 18%, rgba(56, 189, 248, 0.13), transparent 32%), radial-gradient(circle at 82% 12%, rgba(239, 68, 68, 0.10), transparent 30%)',
+        'navy-gradient': 'linear-gradient(135deg, #020617 0%, #0f0a1f 25%, #0a0f1f 50%, #030712 75%, #020617 100%)',
+        'navy-radial': 'radial-gradient(ellipse at center, #0f0a1f 0%, #020617 70%)',
         // Light Streak Effects
-        'streak-blue': 'linear-gradient(135deg, transparent 0%, rgba(37, 99, 235, 0.15) 50%, transparent 100%)',
-        'streak-red': 'linear-gradient(45deg, transparent 0%, rgba(239, 68, 68, 0.12) 50%, transparent 100%)',
-        'streak-cyan': 'linear-gradient(225deg, transparent 0%, rgba(59, 130, 246, 0.1) 50%, transparent 100%)',
+        'streak-violet': 'linear-gradient(135deg, transparent 0%, rgba(139, 92, 246, 0.15) 50%, transparent 100%)',
+        'streak-blue': 'linear-gradient(45deg, transparent 0%, rgba(59, 130, 246, 0.12) 50%, transparent 100%)',
+        'streak-cyan': 'linear-gradient(225deg, transparent 0%, rgba(6, 182, 212, 0.1) 50%, transparent 100%)',
         // Card Glass Gradient
         'glass-card': 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
         'glass-card-hover': 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%)',
         // Neon Gradients
-        'neon-blue-red': 'linear-gradient(135deg, #2563eb 0%, #ef4444 100%)',
-        'neon-red-bright': 'linear-gradient(135deg, #ef4444 0%, #38bdf8 100%)',
-        'neon-blue-deepRed': 'linear-gradient(135deg, #2563eb 0%, #991b1b 100%)',
-        'neon-blue-deep': 'linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%)',
+        'neon-violet-blue': 'linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%)',
+        'neon-blue-cyan': 'linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%)',
+        'neon-violet-pink': 'linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%)',
+        'neon-purple-violet': 'linear-gradient(135deg, #A855F7 0%, #8B5CF6 100%)',
         // Sidebar gradient
         'sidebar': 'linear-gradient(180deg, rgba(20, 20, 35, 0.95) 0%, rgba(10, 10, 20, 0.95) 100%)',
         // Topbar gradient
@@ -71,15 +63,12 @@ export default {
         'glass-sm': '0 4px 16px rgba(0, 0, 0, 0.25)',
         'glass-lg': '0 16px 48px rgba(0, 0, 0, 0.4)',
         'glass-xl': '0 24px 64px rgba(0, 0, 0, 0.5)',
-        'glow-blue-red': '0 0 18px rgba(56, 189, 248, 0.18), 0 0 34px rgba(239, 68, 68, 0.10)',
-        'glow-blue-red-lg': '0 0 26px rgba(56, 189, 248, 0.24), 0 0 54px rgba(239, 68, 68, 0.14)',
-        'glow-blue': '0 0 18px rgba(56, 189, 248, 0.18), 0 0 34px rgba(56, 189, 248, 0.10)',
-        'glow-cyan': '0 0 18px rgba(29, 78, 216, 0.18), 0 0 34px rgba(29, 78, 216, 0.10)',
-        'glow-blue-soft': '0 0 18px rgba(37, 99, 235, 0.18), 0 0 34px rgba(37, 99, 235, 0.10)',
-        'glow-red': '0 0 20px rgba(239, 68, 68, 0.28), 0 0 40px rgba(239, 68, 68, 0.14)',
-        'glow-powerstarter': '0 0 18px rgba(56, 189, 248, 0.18), 0 0 34px rgba(239, 68, 68, 0.10)',
-        'glow-powerstarter-lg': '0 0 26px rgba(56, 189, 248, 0.24), 0 0 54px rgba(239, 68, 68, 0.14)',
-        'glow-subtle': '0 0 12px rgba(56, 189, 248, 0.12)',
+        'glow-violet': '0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.15)',
+        'glow-violet-lg': '0 0 30px rgba(139, 92, 246, 0.4), 0 0 60px rgba(139, 92, 246, 0.2)',
+        'glow-blue': '0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.15)',
+        'glow-cyan': '0 0 20px rgba(6, 182, 212, 0.3), 0 0 40px rgba(6, 182, 212, 0.15)',
+        'glow-green': '0 0 20px rgba(34, 197, 94, 0.3), 0 0 40px rgba(34, 197, 94, 0.15)',
+        'glow-subtle': '0 0 15px rgba(139, 92, 246, 0.15)',
         'inner-glow': 'inset 0 1px 0 rgba(255, 255, 255, 0.1)',
         'inner-glow-strong': 'inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.1)',
         'card': '0 4px 24px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05)',
